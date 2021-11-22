@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Header } from "./global/Header";
 
-function App() {
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+
+import PlaceOrder from "./main/PlaceOrder";
+import UpdatePredicted from "./main/UpdatePredicted";
+import Kitchen from "./main/Kitchen";
+
+const App = () =>
+  useRoutes([
+    { path: "/", element: <PlaceOrder /> },
+    { path: "/updatepredicted", element: <UpdatePredicted /> },
+    { path: "/kitchen", element: <Kitchen /> },
+  ]);
+
+function AppWrapper() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+        <App />
+      </Router>
     </div>
   );
 }
 
-export default App;
+export default AppWrapper;
